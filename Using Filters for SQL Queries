@@ -1,0 +1,69 @@
+Apply filters to SQL queries
+
+Project Description:
+Working for an organization where our focus is to make sure their system is secure. Our job is to make sure the system is safe, to investigate all potential security risks/issues and update employee computers as it is needed. Using SQL with filters to perform security-related tasks. 
+
+Retrieve After Hours Failed Login Attempts:
+There might be a risk or potential security incident if employees are accessing accounts after 1800 hours. All after hours (after 1800 hours) login attempts that failed need to be investigated further. 
+This is an SQL query to filter for failed login attempts that occur after business hours. 
+
+SELECT *
+FROM log_in_attempts
+WHERE login_time > ’18:00’ AND success = ‘FALSE’;
+
+This query filters for failed login attempts that occurred after 18:00 hours. Using select all data from the log_in_attempts table, then using the WHERE clause with an AND operator to filter my results to output only login  attempts that occurred after 18:00 and that failed. 
+
+
+Retrieve Login Attempts on Specific Dates:
+This example is a suspicious event occurred on 2022-05-09, we need to check/investigate any log activity that happened on 2022-05-09 or on the day before the 9th. The following code demonstrates how a SQL query can be used to filter for login attempts that occurred on a specific date(s).
+
+SELECT *
+FROM log_in_attempts
+WHERE login_date = ‘2022-05-09’ OR login_date = ‘2022-05-08’;
+
+This query returns all login attempts that occurred on 2022-05-09 or on 2022-05-08. It started by selecting all data from the log_in_attempts table, then using the WHERE clause with an OR operator to filter the results to output only login attempts that occurred on either 2022-05-09 or 2022-05-08. 
+
+
+Retrieve Login Attempts Outside of Mexico:
+After some digging around and investigating the organizations data on login attempts. There is an issue with the login attempts that occurred outside of Mexico and needs further investigation. 
+
+SELECT *
+FROM log_in_attempts
+WHERE NOT country LIKE ‘MEX%’;
+
+This query returns all login attempts that occurred in countries other than Mexico, by selecting all data from the log_in_attempts table. Then using a WHERE clause with a NOT to filter for countries that are not Mexico. Using MEX% will return MEX and MEXICO.
+
+
+Retrieve Employees in Marketing:
+Need to update the computers for certain employees in the Marketing department. Creating an SQL query to filter for employee machines from employees in the Marketing department in the East Building. 
+
+SELECT *
+FROM employees
+WHERE department = ‘Marketing’ AND office LIKE ‘East%’;
+
+This query selects all data from the ‘employees’ table, then using the WHERE clause with AND to filter for employees who work in the Marketing department and assigned to the East Building. 
+
+
+Retrieve Employees in Finance or Sales:
+The machines for the Financing and Sales departments need a different update. Need to gather information on employees in these two departments. 
+
+SELECT *
+FROM employees
+WHERE department = ‘Finance’ OR department = ‘Sales’;
+
+First selecting all data from the ‘employees’ table, then using the WHERE clause with OR to filter for employees who are either in Finance or Sales departments.
+
+
+Retrieve All Employees Not in IT:
+Next, need to make one more security update on employees who are not in  Information Technology department. 
+
+SELECT *
+FROM employees
+WHERE NOT department = “Information Technology’;
+
+This query starts by selecting all the data from the employees table, then using the WHERE clause with NOT to filter for all employees who are on in the Information Technology department. 
+
+
+Summary:
+The first part of this exercise was to apply filters to SQL code to get specific information on login attempts and employee machines. This exercise used data from two different tables ‘log_in_attempts’ and ‘employees’, using ‘AND’, ‘OR’, and ‘NOT’ operators to filter out the information we were looking for,
+
