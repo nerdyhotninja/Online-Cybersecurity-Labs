@@ -1,0 +1,112 @@
+Algorithm for File Updates in Python
+
+<b>Project Description: </b>
+Python has functions and syntax that help you import and parse text files. 
+The “with” statement that allows you to efficiently handle files. 
+The open() function allows you to import or open a file. 
+Files: .open(), .read(), .write() 
+You can use a for loop to iterate over a list. 
+You can use an if statement to check if a given value is in a list and execute a specific action if so. 
+You can use the .split() method to convert a string to a list. 
+You can use Python to compare contents of a text file against elements of a list. 
+Algorithms can be incorporated into functions. 
+
+
+<b>Open the File that Contains the Allow List:</b>
+# Assign `import_file` to the name of the file 
+import_file = "allow_list.txt"
+
+# Assign `remove_list` to a list of IP addresses that are no longer allowed to access restricted information. 
+remove_list = ["192.168.97.225", "192.168.158.170", "192.168.201.40", "192.168.58.57"]
+
+# Build `with` statement to read in the initial contents of the file
+with open(import_file, "r") as file:
+
+   # Use '.read()' to read the imported file and store it in a variable named 'ip_addresses'
+   ip_addresses = file.read()
+   
+  # Display 'ip_addresses'
+print(ip_addresses)
+
+
+
+Read the File Contents:
+# Use `.read()` to read the imported file and store it in a variable named `ip_addresses`
+  ip_addresses = file.read()
+
+
+Convert the String Into a List:
+# Assign `remove_list` to a list of IP addresses that are no longer allowed to access restricted information. 
+remove_list = ["192.168.97.225", "192.168.158.170", "192.168.201.40", "192.168.58.57"]
+
+
+Iterate Through the Remove List:
+# Assign `import_file` to the name of the file 
+import_file = "allow_list.txt"
+
+# Assign `remove_list` to a list of IP addresses that are no longer allowed to access restricted information. 
+remove_list = ["192.168.97.225", "192.168.158.170", "192.168.201.40", "192.168.58.57"]
+
+# Build `with` statement to read in the initial contents of the file
+with open(import_file, "r") as file:
+
+  # Use `.read()` to read the imported file and store it in a variable named `ip_addresses`
+  ip_addresses = file.read()
+
+# Use `.split()` to convert `ip_addresses` from a string to a list
+ip_addresses = ip_addresses.split()
+
+# Build iterative statement
+# Name loop variable `element`
+# Loop through `ip_addresses`
+
+for element in ip_addresses:
+  # Build conditional statement
+  # If current element is in `remove_list`,
+    if element in remove_list:
+        # then current element should be removed from `ip_addresses`
+        ip_addresses.remove(element)
+
+# Display `ip_addresses` 
+print(ip_addresses)
+
+
+
+Remove IP Addresses That Are On The Remove List:
+for element in ip_addreses:
+    # Build conditional statement
+    # If current element is in 'remove_list'.
+    if element in remove_list:
+        # then current element should be removed from `ip_addresses`
+        ip_addresses.remove(element)
+# Display 'ip_addresses
+print(ip_addresses)
+
+
+
+Update The File With The Revised List Of IP Addresses:
+  # Build conditional statement
+  # If current element is in `remove_list`,
+    if element in remove_list:
+        # then current element should be removed from `ip_addresses`
+        ip_addresses.remove(element)
+# Convert `ip_addresses` back to a string so that it can be written into the text file 
+ip_addresses = " ".join(ip_addresses)  
+
+
+Summary:
+Algorithms are going to save time. 
+Will need them on the job.
+Using functions will help get the job done faster.
+Python has functions and syntax that help you import and parse text files.
+The with statement allows you to efficiently handle files.
+The open() function allows you to import or open a file. It takes in the name of the file as the first parameter and a string that indicates the purpose of opening the file as the second parameter.
+Specify "r" as the second parameter if you're opening the file for reading purposes.
+Specify "w" as the second parameter if you're opening the file for writing purposes.
+The .read() method allows you to read in a file.
+The .write() method allows you to append or write to a file.
+You can use a for loop to iterate over a list.
+You can use an if statement to check if a given value is in a list and execute a specific action if so.
+You can use the .split() method to convert a string to a list.
+You can use Python to compare contents of a text file against elements of a list.
+Algorithms can be incorporated into functions. When defining a function, you must specify the parameters it takes in and the actions it should execute.
