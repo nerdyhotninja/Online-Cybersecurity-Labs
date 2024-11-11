@@ -1,6 +1,6 @@
 Algorithm for File Updates in Python
 
-<b>Project Description: </b>
+Project Description: 
 Python has functions and syntax that help you import and parse text files. 
 The “with” statement that allows you to efficiently handle files. 
 The open() function allows you to import or open a file. 
@@ -12,7 +12,8 @@ You can use Python to compare contents of a text file against elements of a list
 Algorithms can be incorporated into functions. 
 
 
-<b>Open the File that Contains the Allow List:</b>
+
+Open the File that Contains the Allow List:
 # Assign `import_file` to the name of the file 
 import_file = "allow_list.txt"
 
@@ -30,14 +31,17 @@ print(ip_addresses)
 
 
 
+
 Read the File Contents:
 # Use `.read()` to read the imported file and store it in a variable named `ip_addresses`
   ip_addresses = file.read()
 
 
+
 Convert the String Into a List:
 # Assign `remove_list` to a list of IP addresses that are no longer allowed to access restricted information. 
 remove_list = ["192.168.97.225", "192.168.158.170", "192.168.201.40", "192.168.58.57"]
+
 
 
 Iterate Through the Remove List:
@@ -72,6 +76,7 @@ print(ip_addresses)
 
 
 
+
 Remove IP Addresses That Are On The Remove List:
 for element in ip_addreses:
     # Build conditional statement
@@ -84,6 +89,7 @@ print(ip_addresses)
 
 
 
+
 Update The File With The Revised List Of IP Addresses:
   # Build conditional statement
   # If current element is in `remove_list`,
@@ -92,6 +98,7 @@ Update The File With The Revised List Of IP Addresses:
         ip_addresses.remove(element)
 # Convert `ip_addresses` back to a string so that it can be written into the text file 
 ip_addresses = " ".join(ip_addresses)  
+
 
 
 Summary:
