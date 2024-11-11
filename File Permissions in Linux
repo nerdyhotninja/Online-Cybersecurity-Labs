@@ -1,0 +1,189 @@
+File permissions in Linux
+
+Project description:
+The research team at our organization needs to update the file permissions for certain files and directories within the projects directory. 
+The permissions do not currently reflect the level of authorization that should be given. 
+Checking and updating these permissions will help keep their system secure. 
+To complete this task, we performed the following tasks:
+
+
+Check File and Directory Details:
+The following code demonstrates how we used Linux commands to determine the existing permissions set for a specific directory in the file system.
+On the Linux Command Line:  ls - la
+The ls command used with the -la option will display a detailed listing of the file contents and also returns hidden files.
+
+Describe the Permissions String:
+The 10-character string can be deconstructed to determine who is authorized to access the file and their specific permissions. The characters and what they represent are as follows:
+●	1st character: This character is either a d or hyphen (-) and indicates the file type. If it’s a d, it’s a directory. If it’s a hyphen (-), it’s a regular file.
+●	2nd-4th characters: These characters indicate the read (r), write (w), and execute (x) permissions for the user. When one of these characters is a hyphen (-) instead, it indicates that this permission is not granted to the user.
+●	5th-7th characters: These characters indicate the read (r), write (w), and execute (x) permissions for the group. When one of these characters is a hyphen (-) instead, it indicates that this permission is not granted for the group.
+●	8th-10th characters: These characters indicate the read (r), write (w), and execute (x) permissions for other. This owner type consists of all other users on the system apart from the user and the group. When one of these characters is a hyphen (-) instead, that indicates that this permission is not granted for other.
+
+example -rw-rw-r-- 1 researcher2 research_team  26 DEC  2  15:27  project_t.txt
+●	Since the first character is a hyphen (-), this indicates that project_t.txt is a file, not a directory. 
+●	The second, fifth, and eighth characters are all r, which indicates that user, group, and other all have read permissions. 
+●	The third and sixth characters are w, which indicates that only the user and group have write permissions. 
+●	Note: No one has execute permissions for project_t.txt.
+
+Change File Permissions:
+The organization determined that other shouldn't have write access to any of their files. 
+We determined project_k.txt must have the write access removed for other.
+On the Linux Command Line: chmod o-w project_k.txt
+●	The chmod command changes the permissions on files and directories. 
+●	The first argument indicates what permissions should be changed
+●	The second argument specifies the file or directory. 
+●	In this example, we removed write permissions from other for the project_k.txt file. 
+
+
+Change File Permissions on a Hidden File:
+The research team at our organization recently archived project_x.txt. 
+They do not want anyone to have write access to this project, but the user and group should have read access. 
+On the Linux Command Line: chmod u-w,g-w,g+r .project_x.txt
+●	We know .project_x.txt is a hidden file because it starts with a period (.). 
+●	We removed write permissions from the user and group, and added read permissions to the group. 
+●	We removed write permissions from the user with u-w. 
+●	Then, we removed write permissions from the group with g-w, and added read permissions to the group with g+r. 
+
+
+Change Directory Permissions
+Our organization only wants the researcher2 user to have access to the drafts directory and its contents. This means that no one other than researcher2 should have execute permissions.
+On the Linux Command Line: chmod g-x drafts
+●	We used the chmod command to remove the group. 
+●	The researcher2 user already had execute permissions, so they did not need to be added.
+
+Summary
+●	We changed multiple permissions to match the level of authorization my organization wanted for files and directories in the projects directory. 
+●	The first step in this was using ls -la to check the permissions for the directory. 
+●	This informed our decisions in the following steps. 
+●	We then used the chmod command multiple times to change the permissions on files and directories.
+
+
+
+
+Navigate the file system
+The following Linux commands are helpful when navigating the file system.
+
+cd
+●	Navigates between directories
+cd reports
+●	Navigates from the current working directory to its subdirectory reports
+cd /home/analyst/reports
+●	Navigates to the reports directory; the full path is required when reports is not a subdirectory of the current working directory
+cd ..
+●	Navigates to the directory that is one level above the current working directory
+
+ls
+●	Displays the names of the files and directories
+ls /home/analyst/reports
+●	Displays the names of the files and directories in the reports directory; providing an argument that specifies the path to a directory is necessary to display the contents of a directory other than the user's current working directory
+ls -a
+●	Displays hidden files when displaying the names of files and directories inside the current working directory
+ls -l
+●	Displays permissions to files and directories in the current working directory; also displays other additional information, including owner name, group, file size, and the time of the last modification
+ls -la
+●	Displays permissions to files and directories in the current working directory, including hidden files; also displays other additional information, including owner name, group, file size, and the time of last modification 
+
+pwd
+●	Prints the working directory to the screen
+whoami
+●	Returns the username of the current user
+
+Read files:
+The following Linux commands are helpful when reading files.
+cat
+●	Displays the content of a file
+cat updates.txt
+●	Displays the content of the updates.txt file
+head
+●	Displays just the beginning of a file, by default 10 lines
+head updates.txt
+●	Displays only the first 10 lines of the updates.txt file
+head -n 5 updates.txt
+●	Displays only the first five lines of the updates.txt file; the -n option allows users to specify the number of lines to return
+less
+●	Returns the content of a file one page at a time
+tail
+●	Displays just the end of a file, by default 10 lines
+
+Manage The File System:
+The following Linux commands are helpful when managing the file system.
+cp
+●	Copies a file or directory into a new location; the file will not be removed from the previous location
+mkdir
+●	Creates a new directory
+mv
+●	Moves a file or directory to a new location; the file is also removed from the previous location
+
+nano
+●	Opens or creates a file in the nano command-line file editor
+rm
+●	Removes, or deletes, a file
+rmdir
+●	Removes, or deletes, a directory; only removes directories if they are empty
+touch
+●	Creates a new file
+
+Filter Content:
+The following Linux commands are helpful when filtering content.
+find
+●	Searches for directories and files that meet specified criteria
+grep
+●	Searches a specified file and returns all lines in the file containing a specified string
+
+| (piping)
+●	Sends the standard output of one command as standard input to another command for further processing; accessed using the pipe character (|)
+
+Manage Users And Their Permissions:
+The following Linux commands are helpful when managing user permissions. (Also
+review the subentries for ls -l and ls -la in the ls entry of the Navigate the file
+system section.)
+chmod
+●	Changes permissions on files and directories
+chmod u+rwx,g+rwx,o+rwx login_sessions.txt
+●	Changes user (u), group (g), and other (o) permissions to add (+) read (r), write (w), and execute (x) permissions for the login_sessions.txt file
+chmod g-rw bonuses.txt
+●	Changes the group (g) permissions to remove (-) read (r) and write (w) permissions for the bonuses.txt file
+chmod u=r,g=r,o=r login_sessions.txt
+●	Changes user (u), group (g), and other (o) permissions to assign (=) read (r) permissions for the login_sessions.txt file
+chown
+●	Changes ownership of a file or directory; used with sudo 
+sudo chown fgarcia access.txt
+●	Changes the user owner of the access.txt file to fgarcia
+sudo groupdel accounting
+●	Deletes accounting as a group
+sudo useradd fgarcia
+●	Grants elevated permissions to the user running this command and so that this user can use the useradd command to add fgarcia as a new user to the system
+useradd
+●	Adds a user to the system; used with sudo
+sudo useradd fgarcia
+●	Adds fgarcia as a new user to the system
+sudo useradd -g security fgarcia
+●	Adds fgarcia as a new user and uses the -g option to set their primary group as security
+userdel
+●	Deletes a user from the system; used with sudo
+sudo userdel fgarcia
+●	Deletes fgarcia as a user
+sudo userdel -r fgarcia
+●	Deletes fgarcia as a user and deletes all files in their home directory
+usermod
+●	Modifies existing user accounts; used with sudo
+sudo usermod -g executive fgarcia
+●	Uses the -g option to change the existing fgarcia user's primary group to the executive group
+sudo usermod -G accounting fgarcia
+
+Get help in Linux:
+The following Linux commands are helpful when getting help in Linux.
+apropos
+●	Searches the manual page descriptions for a specified string
+apropos password
+●	Returns the manual pages of commands that contain the keyword password
+apropos -a graph editor
+●	Returns the manual pages of commands that contain both the keywords graph and editor; the -a option specifies to only return commands that contain all specified strings
+man
+●	Displays information on other commands and how they work; the output is called a “man page,” which is short for "manual page"
+man chown
+●	Displays detailed information about chown and how it works
+whatis
+●	Displays a description of a command on a single line
+whatis nano
+●	Displays the description of nano on a single lin
